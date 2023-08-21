@@ -1,32 +1,24 @@
 import React from "react";
 import ReactDom from "react-dom/client";
 
-/*
-React.createElement() gives as a react object
-render is what convert this to html.
-*/
+// JSX is not html in javascript. it's alike html or xml
+
+const Title = () => <h1 className="head" tabIndex="1" >Heading from JSX 🚀</h1>;
 
 /**
- * create siblings you can pass third element as an array
- * 
- * React.createElement("div",{id:"xyz"},[firstSibling,secondSibling])
+ * React Functional Component 
  */
-const parent = React.createElement(
-    "div",
-    { id: "parent" },
-    [
-        React.createElement("div", { id: "child1 " },
-            [
-                React.createElement("h1", {}, "I am from H1 tag"),
-                React.createElement("h2", {}, "I am from H2 tag")
-            ]
-        ),
-        React.createElement("div", { id: "child2 " },
-            [
-                React.createElement("h1", {}, "I am from H1 tag"),
-                React.createElement("h2", {}, "I am from H2 tag")
-            ]
-        )
-    ])
+const HeadingComponent = () => (
+    <div id="container" >
+        <Title />
+        {
+            [...Array(5)].map((_, i) => (
+                <Title key={i} />
+            ))
+        }
+        <h1 className="heading">This is functional HeadingComponent 🚀</h1>
+    </div>)
+
+
 const root = ReactDom.createRoot(document.getElementById("root"));
-root.render(parent);
+root.render(<HeadingComponent />);
