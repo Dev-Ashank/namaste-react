@@ -1,3 +1,140 @@
-.heading{
-    color: red;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically align the items */
+  border: none; /* Remove border */
+  padding: 2px 5px; /* Add padding for spacing */
+  background-color: transparent; /* Set background color */
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  height: 90px;
+  position: relative;
+}
+
+.logo {
+  width: 90px;
+  height: auto;
+}
+
+.nav-items ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px; /* Add space between items */
+}
+
+.nav-items ul li {
+  font-size: 1rem;
+  color: #333;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-items ul li:hover {
+  color: #ff0000; /* Highlight color on hover */
+}
+.card-content {
+  width: 200px;
+  height: 280px;
+  padding: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.restraunt-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+  background-color: transparent; /* Set initial background to transparent */
+  border: 1px solid transparent; /* Set initial border to transparent */
+}
+.restraunt-card:hover {
+  cursor: pointer;
+  transform: scale(0.98);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+  background-color: #f5f5f5;
+}
+
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card-details {
+  width: 100%;
+  padding: 4px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-details h3 {
+  margin: 4px 0;
+  font-size: 1.1rem;
+  color: #333; /* Custom color for the heading */
+  text-transform: capitalize; /* Convert the text to title case */
+}
+.card-details p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+.card-content-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.card-content-items p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #888;
+}
+.restraunt-card:hover .card-details p {
+  color: #333;
+}
+.card-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: contain;
+}
+.search {
+  padding: 2px;
+  margin: 5px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.search-input {
+  flex: auto;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-button {
+  margin-left: 5px;
+  background-color: lightslategray;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.search-button:hover {
+  background-color: #e34b4b;
 }
