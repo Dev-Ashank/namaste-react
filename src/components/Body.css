@@ -1,0 +1,55 @@
+.filter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.filter > p {
+  margin: 10px;
+}
+/* The toggle switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider (rounded) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 15px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* The "checked" state of the toggle switch */
+.switch input:checked + .slider {
+  background-color: #fc0202;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(30px);
+}

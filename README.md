@@ -19,3 +19,15 @@
 - Https
 - Tree Shaking - remove unused code
 - Different DEV and Prod Build
+
+# There is two types of export
+- default export - export default Name - export without curly braces
+- name export - export const name = {} - export with curly braces
+
+# React hooks
+- Normal js functions
+- useState() - powerful state  variables
+- useEffect()
+
+ - Whenever state variable changes React rerenders the component;
+
