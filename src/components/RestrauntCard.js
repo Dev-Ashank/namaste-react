@@ -8,16 +8,16 @@ const RestrauntCard = (props) => {
         avgRating,
         cuisines,
         costForTwo,
-        deliveryTime
-    } = resData?.data?.data;
+        sla: { deliveryTime }
+    } = resData?.info;
     return (
         <div className="restraunt-card">
             <div className="card-content">
-                <img className="card-image" alt="card-image" src={CDN_URL+ cloudinaryImageId} />
+                <img className="card-image" alt="card-image" src={CDN_URL + cloudinaryImageId} />
                 <div className="card-details">
                     <h3>{name}</h3>
                     <p>{cuisines.join(", ")}</p>
-                    <p>₹{costForTwo / 100} FOR TWO</p>
+                    <p>{costForTwo}</p>
                     <div className="card-content-items">
                         <p>{avgRating}⭐️</p>
                         <p>{deliveryTime} Minutes</p>
