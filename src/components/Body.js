@@ -3,28 +3,35 @@ import SearchBar from "./SearchBar";
 import './Body.css';
 import { useEffect, useState } from "react";
 import { SWIGGY_API_URL } from "../utils/constants";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
     const [listOfRestraunts, setListOfRestraunts] = useState([]);
     const [filterOn, setFilterOn] = useState(false);
+    const [searchText, setSearchText] = useState("");
     useEffect(() => {
         fetchData();
     }, [])
 
-    function findRestaurantsIndex(data, path = []) {
-        for (const key in data) {
-            if (data[key] && typeof data[key] === 'object') {
-                if (data[key].hasOwnProperty("restaurants")) {
-                    return path.concat(key);
-                }
-                const foundPath = findRestaurantsIndex(data[key], path.concat(key));
-                if (foundPath !== null) {
-                    return foundPath;
+    function findRestaurantsIndex(data) {
+        const stack = [{ node: data, path: [] }];
+
+        while (stack.length > 0) {
+            const { node, path } = stack.pop();
+
+            for (const key in node) {
+                if (node[key] && typeof node[key] === 'object') {
+                    if (node[key].hasOwnProperty("restaurants")) {
+                        return path.concat(key);
+                    }
+                    stack.push({ node: node[key], path: path.concat(key) });
                 }
             }
         }
+
         return null;
     }
+
 
     const fetchData = async () => {
         const data = await fetch(SWIGGY_API_URL);
@@ -32,14 +39,11 @@ const Body = () => {
 
         const cards = json.data.cards;
         const pathToRestaurants = findRestaurantsIndex(cards);
-
-        console.log(pathToRestaurants);
         let listOfRestaurantsFromWeb = [];
 
         if (pathToRestaurants !== null) {
             const restaurantsIndex = pathToRestaurants[0];
-            listOfRestaurantsFromWeb = cards[restaurantsIndex].card.card.gridElements.infoWithStyle.restaurants;
-            console.log(restaurantsIndex);
+            listOfRestaurantsFromWeb = cards[restaurantsIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         }
         setListOfRestraunts(listOfRestaurantsFromWeb);
     }
@@ -48,16 +52,48 @@ const Body = () => {
         setFilterOn(!filterOn);
     };
 
-    const filteredList = filterOn
-        ? listOfRestraunts.filter((item) => item.info.avgRating >= 3.9)
-        : listOfRestraunts;
+    // Filter function based on rating condition
+    const filterByRating = (restaurant) => {
+        return restaurant.info.avgRating >= 4.0;
+    };
 
-    return (
+    // Filter function based on name condition
+    const filterByName = (restaurant) => {
+        const restaurantName = restaurant.info.name.toLowerCase();
+        const searchTextLowerCase = searchText.toLowerCase();
+        return restaurantName.includes(searchTextLowerCase);
+    };
+
+    // Apply filters based on the toggle
+    const applyFilters = (restaurant) => {
+        if (filterOn) {
+            return filterByRating(restaurant) && filterByName(restaurant);
+        }
+        return filterByName(restaurant);
+    };
+    
+    // Filter the list of restaurants based on the combined filter criteria
+    const filteredList = listOfRestraunts.filter(applyFilters);
+
+    return listOfRestraunts.length === 0 ? <Shimmer /> : (
         <div className="body-container">
-            <div className="search-container">
+            {/* <div className="search-container">
                 <SearchBar />
+            </div> */}
+            <div className="search">
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Search Restraunts"
+                    value={searchText}
+                    onChange={(e) => {
+                        setSearchText(e.target.value);
+                    }}
+                />
+                <button className="search-button" onClick={filterByName}>Search</button>
             </div>
             <div className="filter">
+
                 <label className="switch">
                     <input type="checkbox" id="toggle-switch"
                         checked={filterOn}

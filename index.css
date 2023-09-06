@@ -35,10 +35,16 @@
 .nav-items ul li:hover {
   color: #ff0000; /* Highlight color on hover */
 }
+.btn-login{
+  cursor: pointer;
+}
+.btn-login:hover{
+  color: #ff0000;
+}
 .card-content {
   width: 200px;
   height: 280px;
-  padding: 15px;
+  padding: 4px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -74,21 +80,26 @@
   justify-content: space-between;
 }
 .card-details h3 {
-  margin: 4px 0;
+  margin: 2px 0;
   font-size: 1.1rem;
   color: #333; /* Custom color for the heading */
   text-transform: capitalize; /* Convert the text to title case */
 }
+/* Style for limiting lines and truncating text with ellipsis */
 .card-details p {
   margin: 4px 0;
   font-size: 0.9rem;
+  /* Use your text color or adjust as needed */
   color: #555;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .card-content-items {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
 }
 .card-content-items p {
   margin: 0;
