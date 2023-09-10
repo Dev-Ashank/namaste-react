@@ -1,0 +1,38 @@
+/* ContactUs.css */
+
+/* Styling for the contact container */
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling for the contact card */
+.contact-card {
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  max-width: 500px; /* Limit card width */
+}
+
+/* Styling for headings and paragraphs */
+.contact-card h2 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.contact-card p {
+  font-size: 2rem;
+  margin: 10px;
+}
+
+/* Styling for contact information */
+.contact-info {
+  margin-top: 20px;
+}
