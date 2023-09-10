@@ -4,6 +4,7 @@ import './Body.css';
 import { useEffect, useState } from "react";
 import { SWIGGY_API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     const [listOfRestraunts, setListOfRestraunts] = useState([]);
@@ -71,7 +72,7 @@ const Body = () => {
         }
         return filterByName(restaurant);
     };
-    
+
     // Filter the list of restaurants based on the combined filter criteria
     const filteredList = listOfRestraunts.filter(applyFilters);
 
@@ -108,7 +109,11 @@ const Body = () => {
 
             <div className="res-container">
                 {
-                    filteredList.map(restraunt => <RestrauntCard key={restraunt.info.id} resData={restraunt} />)
+
+                    filteredList.map((restraunt) => <Link to={"/restraunt/" + restraunt.info.id} key={restraunt.info.id}>
+                        <RestrauntCard resData={restraunt} />
+                    </Link>
+                    )
                 }
             </div>
         </div>
