@@ -1,0 +1,36 @@
+.dancing-404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff; /* Red background color */
+}
+
+.error-text {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #ff144f; /* White text color */
+}
+
+h1 {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  animation: dance 2s ease-in-out infinite; /* Animation */
+}
+
+p {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes dance {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); /* Dancing motion */
+  }
+}
