@@ -1,0 +1,75 @@
+/* CSS for the restaurant card */
+.restaurant-card {
+  width: 80%;
+  max-width: 800px;
+  border: none;
+  overflow: hidden;
+  margin: 0 auto; /* Center horizontally */
+  background-color: #ffffff;
+}
+.restaurant-card::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px; /* Adjust the height of the dotted line */
+  border-bottom: 2px dotted #afafaf; /* Increase border-width and adjust style and color */
+}
+/* CSS for the restaurant card content */
+.restaurant-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; /* Adjust padding as needed */
+}
+
+/* CSS for the restaurant info */
+.restaurant-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* CSS for the restaurant name */
+.restaurant-name {
+  margin: 0;
+  font-size: 1.2rem; /* Font size specified earlier */
+}
+
+/* CSS for details container */
+.details {
+  display: flex;
+  padding-top: 2px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* CSS for cuisine and location */
+.details p {
+  margin-right: 2px; /* Add some space between details */
+  font-size: 0.8rem; /* Very small font size */
+  color: #333;
+}
+.location {
+  display: flex;
+  flex-direction: row;
+}
+
+/* CSS for the restaurant distance */
+.location .distance {
+  font-size: 0.8rem; /* Smaller font size for distance */
+  color: #333;
+  margin-left: 0px; /* Add some space between location and distance */
+}
+/* CSS for the rating */
+.rating {
+  text-align: right; /* Align rating to the right */
+}
+
+.stars {
+  font-size: 1.2rem; /* Adjust the font size for stars */
+}
+
+.review-count {
+  margin: 0;
+  font-size: 0.8rem; /* Smaller font size for review count */
+  color: #333;
+}

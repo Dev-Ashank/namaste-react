@@ -1,15 +1,18 @@
-import RestrauntCard from "./RestrauntCard";
+import RestrauntCard, { withPromotedLabel } from "./RestrauntCard";
 import SearchBar from "./SearchBar";
 import './Body.css';
 import { useEffect, useState } from "react";
 import { SWIGGY_API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     const [listOfRestraunts, setListOfRestraunts] = useState([]);
     const [filterOn, setFilterOn] = useState(false);
     const [searchText, setSearchText] = useState("");
+    const RestrauntCardPromoted = withPromotedLabel(RestrauntCard);
+
     useEffect(() => {
         fetchData();
     }, [])
@@ -35,19 +38,39 @@ const Body = () => {
 
 
     const fetchData = async () => {
-        const data = await fetch(SWIGGY_API_URL);
-        const json = await data.json();
+        try {
+            const data = await fetch(SWIGGY_API_URL);
 
-        const cards = json.data.cards;
-        const pathToRestaurants = findRestaurantsIndex(cards);
-        let listOfRestaurantsFromWeb = [];
+            if (!data.ok) {
+                throw new Error(`Failed to fetch data from SWIGGY API. Status: ${data.status}`);
+            }
 
-        if (pathToRestaurants !== null) {
-            const restaurantsIndex = pathToRestaurants[0];
-            listOfRestaurantsFromWeb = cards[restaurantsIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            const json = await data.json();
+
+            if (!json.data || !json.data.cards) {
+                throw new Error('Invalid data format received from the API');
+            }
+
+            const cards = json.data.cards;
+            const pathToRestaurants = findRestaurantsIndex(cards);
+            let listOfRestaurantsFromWeb = [];
+
+            if (pathToRestaurants !== null) {
+                const restaurantsIndex = pathToRestaurants[0];
+                listOfRestaurantsFromWeb = cards[restaurantsIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            }
+
+            if (!listOfRestaurantsFromWeb) {
+                throw new Error('No restaurant data found in the API response');
+            }
+
+            setListOfRestraunts(listOfRestaurantsFromWeb);
+        } catch (error) {
+            // Handle the error here, you can log it or show a user-friendly message.
+            console.error('Error fetching or processing data:', error);
         }
-        setListOfRestraunts(listOfRestaurantsFromWeb);
     }
+
 
     const handleToggle = () => {
         setFilterOn(!filterOn);
@@ -75,7 +98,11 @@ const Body = () => {
 
     // Filter the list of restaurants based on the combined filter criteria
     const filteredList = listOfRestraunts.filter(applyFilters);
+    const onlineStatus = useOnlineStatus();
 
+    if (onlineStatus === false) {
+        return <h1> Seems! You are offline.Please check your internet.</h1>
+    }
     return listOfRestraunts.length === 0 ? <Shimmer /> : (
         <div className="body-container">
             {/* <div className="search-container">
@@ -110,7 +137,9 @@ const Body = () => {
             <div className="res-container">
                 {
 
-                    filteredList.map((restraunt) => <Link to={"/restraunt/" + restraunt.info.id} key={restraunt.info.id}>
+                    filteredList.map((restraunt) => <Link to={"/restraunt/" + restraunt.info.id}
+                     key={restraunt.info.id}>
+                     {/* {restraunt.data.promoted}?<RestrauntCardPromoted resData={restraunt} />: */}
                         <RestrauntCard resData={restraunt} />
                     </Link>
                     )

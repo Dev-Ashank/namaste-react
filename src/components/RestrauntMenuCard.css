@@ -1,0 +1,77 @@
+/* CSS for the item card container */
+.item-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  margin: 0; /* Remove default margin */
+}
+
+/* CSS for the item card */
+.item-card {
+  width: 80%;
+  max-width: 800px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-top: 1px solid #ccc; /* Add a top border */
+  border-bottom: 1px solid #ccc; /* Add a bottom border */
+  border-left: none;
+  border-right: none;
+  overflow: hidden;
+  margin: 0; /* Remove default margin */
+  background-color: #ffffff;
+}
+
+/* CSS for the item card content */
+.item-card-content {
+  display: flex;
+  align-items: center;
+}
+
+/* CSS for the left side of the item card */
+.item-card-left {
+  flex: 1;
+  padding: 20px;
+}
+
+/* CSS for the right side of the item card (image) */
+.item-card-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+}
+
+.item-card-right img {
+  height: 100px;
+  width: 100px;
+  border-radius: 5px;
+}
+
+/* CSS for the item card header */
+.item-card-header {
+  margin-bottom: 10px;
+}
+
+.item-card-name {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.item-card-price {
+  margin-top: 2;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* CSS for the item card body (description) */
+.item-card-body {
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.item-card-description {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}

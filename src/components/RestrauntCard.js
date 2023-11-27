@@ -28,4 +28,18 @@ const RestrauntCard = (props) => {
         </div>
     )
 };
+
+export const withPromotedLabel = (RestrauntCard) => {
+    return (props) => {
+        return (
+            <div>
+                <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+
+                </label>
+                <RestrauntCard {...props} />
+            </div>
+        );
+    }
+
+}
 export default RestrauntCard;

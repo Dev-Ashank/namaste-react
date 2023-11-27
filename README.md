@@ -42,3 +42,10 @@
   -if there in no dependency array it will called after every rendered happen of that component.
   -if dependency array is empty it will called on initial rendered(only once).
   - if dependency array is [something] whenever {something} changes my use effect will be called
+
+- React Router
+  - we get it from react-router-dom
+  - createBrowserRouter
+    - inside this we provide configuration of our routes
+  - RouteProvider
+    - It will provide createBrowserRouter configuration to our render.
