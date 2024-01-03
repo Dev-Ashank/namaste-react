@@ -16,7 +16,7 @@ h1 {
   font-size: 4rem;
   margin: 0;
   padding: 0;
-  animation: dance 2s ease-in-out infinite; /* Animation */
+  /* animation: dance 2s ease-in-out infinite; Animation */
 }
 
 p {

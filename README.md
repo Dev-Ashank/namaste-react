@@ -49,3 +49,20 @@
     - inside this we provide configuration of our routes
   - RouteProvider
     - It will provide createBrowserRouter configuration to our render.
+
+# Redux Store
+  - Install @reduxjs/toolkit and react-redux
+  - Build our redux store
+  - Connect our store to app
+  - Slice creation (cart slice)
+  - Dispatch/Action
+  - Selector
+ ...
+
+# Testing
+  - Install react testing lib
+  - Install Jest
+  - Install Babel dep
+  - Config. Babel
+  - To disable default babel transpilation 
+  
