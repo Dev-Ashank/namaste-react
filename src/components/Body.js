@@ -39,7 +39,7 @@ const Body = () => {
 
     const fetchData = async () => {
         try {
-            const data = await fetch('/api/proxy');
+            const data = await fetch(SWIGGY_API_URL);
 
             if (!data.ok) {
                 throw new Error(`Failed to fetch data from SWIGGY API. Status: ${data.status}`);
@@ -138,8 +138,8 @@ const Body = () => {
                 {
 
                     filteredList.map((restraunt) => <Link to={"/restraunt/" + restraunt.info.id}
-                        key={restraunt.info.id}>
-                        {/* {restraunt.data.promoted}?<RestrauntCardPromoted resData={restraunt} />: */}
+                     key={restraunt.info.id}>
+                     {/* {restraunt.data.promoted}?<RestrauntCardPromoted resData={restraunt} />: */}
                         <RestrauntCard resData={restraunt} />
                     </Link>
                     )
