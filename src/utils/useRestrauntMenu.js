@@ -7,7 +7,8 @@ const useRestrauntMenu = (resId) => {
         fetchData();
     }, [])
     const fetchData = async () => {
-        const data = await fetch(SWIGGY_MENU_API_URL + resId);
+        const url = `https://corsproxy.org/?${encodeURIComponent(SWIGGY_MENU_API_URL)}${resId}`;
+        const data = await fetch(url);
         const json = await data.json();
         setResMenu(json.data)
     }
